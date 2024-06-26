@@ -1,11 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-import shit from './beemovie'
-
-type Data = {
-    data: string
-}
-
+import shit from "./beemovie";
 
 const createSentence = (data: string): string => {
     let out: string = '';
@@ -33,12 +26,10 @@ const createSentence = (data: string): string => {
     return out;
 }
 
-
-export default function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<Data>
-) {
-
-    let str: string = ''
-    res.status(200).json({ data: createSentence(shit) })
+export function GET(request: Request) {
+    return Response.json(
+        {sentence: createSentence(shit)},
+        {status:200}
+    )
+    
 }
